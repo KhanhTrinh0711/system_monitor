@@ -1,0 +1,3 @@
+/home/trinh/projects/sys-monitor/build/CMakeFiles/sys-monitor.dir
+/home/trinh/projects/sys-monitor/build/CMakeFiles/edit_cache.dir
+/home/trinh/projects/sys-monitor/build/CMakeFiles/rebuild_cache.dir
