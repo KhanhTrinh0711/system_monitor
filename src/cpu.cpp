@@ -65,27 +65,44 @@ double cpu_usage() {
 }
 
 int cpu() {
-    string line;
-    double usage = cpu_usage();
-
+    ifstream file("/proc/cpuinfo");
     if (!file.is_open()) {
         cout << "Error opening /proc/cpuinfo" << endl;
         return 1;
     }
 
+    string line;
+    string model_name = "";
+    string cpu_cores = "";
+    string cache_size = "";
+
     while (getline(file, line)) {
-        if (line.rfind("model name", 0) == 0) {
-            cout << line << endl;
+        if (model_name.empty() && line.rfind("model name", 0) == 0) {
+            model_name = line;
         }
-        if (line.rfind("cpu cores", 0) == 0) {
-            cout << line << endl;
+        else if (cpu_cores.empty() && line.rfind("cpu cores", 0) == 0) {
+            cpu_cores = line;
         }
-        long threads = sysconf(_SC_NPROCESSORS_ONLN);
-        cout << "Threads: " << static_cast<int>(threads) << endl;
-        if (line.rfind("cache size", 0) == 0) {
-            cout << line << endl;
+        else if (cache_size.empty() && line.rfind("cache size", 0) == 0) {
+            cache_size = line;
         }
-        cout << "CPU: " << usage << "%" << endl;
+
+        if (!model_name.empty() && !cpu_cores.empty() && !cache_size.empty()) {
+            break;
+        }
     }
+    file.close();
+
+    long threads = sysconf(_SC_NPROCESSORS_ONLN);
+    double usage = cpu_usage();
+
+    cout << "====================== CPU INFORMATION ====================" << endl;
+    cout << model_name << endl;
+    cout << cpu_cores << endl;
+    cout << "Threads: " << static_cast<int>(threads) << endl;
+    cout << cache_size << endl;
+    cout << "CPU Usage: " << usage << "%" << endl;
+    cout << "===========================================================" << endl;
+
     return 0;
 }
