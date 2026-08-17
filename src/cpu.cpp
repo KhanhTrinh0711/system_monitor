@@ -16,6 +16,7 @@ using std::ifstream;
 using std::getline;
 using std::cout;
 using std::endl;
+using std::stod;
 
 ifstream file("/proc/cpuinfo");
 
@@ -64,6 +65,28 @@ double cpu_usage() {
     return cpu_usage;
 }
 
+double true_temp() {
+    ifstream temp("/sys/class/thermal/thermal_zone0/temp");
+    if (!temp.is_open()) {
+        cout << "Error opening /sys/class/thermal" << endl;
+        return -1;
+    }
+
+    string temperature;
+
+    if (getline(temp, temperature)) {
+        try {
+            double militemp = stod(temperature);
+            return militemp/1000.0;
+        }
+        catch (...) {
+            cout << "Error reading /sys/class/thermal" << endl;
+            return -1;
+        }
+    }
+    return 0;
+}
+
 int cpu() {
     ifstream file("/proc/cpuinfo");
     if (!file.is_open()) {
@@ -86,11 +109,11 @@ int cpu() {
         else if (cache_size.empty() && line.rfind("cache size", 0) == 0) {
             cache_size = line;
         }
-
         if (!model_name.empty() && !cpu_cores.empty() && !cache_size.empty()) {
             break;
         }
     }
+
     file.close();
 
     long threads = sysconf(_SC_NPROCESSORS_ONLN);
@@ -102,6 +125,7 @@ int cpu() {
     cout << "Threads: " << static_cast<int>(threads) << endl;
     cout << cache_size << endl;
     cout << "CPU Usage: " << usage << "%" << endl;
+    cout << "CPU Temp: " << true_temp() << " °C" << endl;
     cout << "===========================================================" << endl;
 
     return 0;
