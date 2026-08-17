@@ -10,6 +10,7 @@
 #include <unistd.h>
 #include <thread>
 #include <chrono>
+#include <cmath>
 
 using std::string;
 using std::ifstream;
@@ -17,8 +18,7 @@ using std::getline;
 using std::cout;
 using std::endl;
 using std::stod;
-
-ifstream file("/proc/cpuinfo");
+using std::round;
 
 struct CpuStats {
     unsigned long long idle;
@@ -26,15 +26,15 @@ struct CpuStats {
 };
 
 CpuStats read_cpu_stats() {
-    std::ifstream file("/proc/stat");
-    std::string line;
+    ifstream file("/proc/stat");
+    string line;
     CpuStats stats{0, 0};
 
     if (file.is_open() && std::getline(file, line)) {
 
         if (line.rfind("cpu ", 0) == 0) {
             std::stringstream ss(line);
-            std::string label;
+            string label;
             unsigned long long user, nice, system, idle, iowait, irq, softirq, steal;
 
             ss >> label >> user >> nice >> system >> idle >> iowait >> irq >> softirq >> steal;
@@ -66,22 +66,21 @@ double cpu_usage() {
 }
 
 double true_temp() {
-    ifstream temp("/sys/class/thermal/thermal_zone0/temp");
-    if (!temp.is_open()) {
-        cout << "Error opening /sys/class/thermal" << endl;
+    ifstream temp_file("/sys/class/thermal/thermal_zone6/temp");
+
+    if (!temp_file.is_open()) {
+        cout << "Error opening /sys/class/thermal/thermal_zone6/temp" << endl;
         return -1;
     }
 
-    string temperature;
-
-    if (getline(temp, temperature)) {
+    string raw_temp;
+    if (getline(temp_file, raw_temp)) {
         try {
-            double militemp = stod(temperature);
-            return militemp/1000.0;
+            double militemp = stod(raw_temp);
+            return militemp / 1000.0;
         }
         catch (...) {
-            cout << "Error reading /sys/class/thermal" << endl;
-            return -1;
+            return -1.0;
         }
     }
     return 0;
@@ -124,7 +123,7 @@ int cpu() {
     cout << cpu_cores << endl;
     cout << "Threads: " << static_cast<int>(threads) << endl;
     cout << cache_size << endl;
-    cout << "CPU Usage: " << usage << "%" << endl;
+    cout << "CPU Usage: " << round(usage * 10.0) / 10.0 << "%" << endl;
     cout << "CPU Temp: " << true_temp() << " °C" << endl;
     cout << "===========================================================" << endl;
 

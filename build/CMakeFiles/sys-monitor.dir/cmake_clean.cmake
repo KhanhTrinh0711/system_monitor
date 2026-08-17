@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/sys-monitor.dir/core/main.cpp.o.d"
   "CMakeFiles/sys-monitor.dir/src/cpu.cpp.o"
   "CMakeFiles/sys-monitor.dir/src/cpu.cpp.o.d"
+  "CMakeFiles/sys-monitor.dir/src/memory.cpp.o"
+  "CMakeFiles/sys-monitor.dir/src/memory.cpp.o.d"
   "sys-monitor"
   "sys-monitor.pdb"
 )
