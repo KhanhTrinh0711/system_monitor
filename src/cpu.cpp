@@ -4,6 +4,7 @@
 
 #include "cpu.h"
 #include <iostream>
+#include <iomanip>
 #include <sstream>
 #include <fstream>
 #include <string>
@@ -19,6 +20,17 @@ using std::cout;
 using std::endl;
 using std::stod;
 using std::round;
+
+string value_after_colon(const string& field) {
+    const auto colon = field.find(':');
+    if (colon == string::npos) {
+        return field;
+    }
+
+    const string value = field.substr(colon + 1);
+    const auto first = value.find_first_not_of(" \t");
+    return first == string::npos ? "" : value.substr(first);
+}
 
 struct CpuStats {
     unsigned long long idle;
@@ -119,12 +131,12 @@ int cpu() {
     double usage = cpu_usage();
 
     cout << "====================== CPU INFORMATION ====================" << endl;
-    cout << model_name << endl;
-    cout << cpu_cores << endl;
-    cout << "Threads: " << static_cast<int>(threads) << endl;
-    cout << cache_size << endl;
-    cout << "CPU Usage: " << round(usage * 10.0) / 10.0 << "%" << endl;
-    cout << "CPU Temp: " << true_temp() << " °C" << endl;
+    cout << std::left << std::setw(10) << "Model name" << ": " << value_after_colon(model_name) << endl;
+    cout << std::left << std::setw(10) << "CPU cores" << ": " << value_after_colon(cpu_cores) << endl;
+    cout << std::left << std::setw(10) << "Threads" << ": " << static_cast<int>(threads) << endl;
+    cout << std::left << std::setw(10) << "Cache size" << ": " << value_after_colon(cache_size) << endl;
+    cout << std::left << std::setw(10) << "CPU Usage" << ": " << round(usage * 10.0) / 10.0 << "%" << endl;
+    cout << std::left << std::setw(10) << "CPU Temp" << ": " << true_temp() << " °C" << endl;
     cout << "===========================================================" << endl;
 
     return 0;

@@ -5,6 +5,6 @@ add_executable(
 		core/main.cpp
 		src/cpu.cpp
 		src/cpu.h
-		src/memory.cpp
 		src/memory.h
+		src/memory.cpp
 )

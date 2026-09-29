@@ -8,5 +8,6 @@
 class cpu {
 };
 
+int cpu();
 
 #endif //SYS_MONITOR_CPU_H
