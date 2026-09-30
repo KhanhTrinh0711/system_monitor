@@ -81,12 +81,12 @@ clean: CMakeFiles/sys-monitor.dir/clean
 CMakeFiles/sys-monitor.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sys-monitor.dir/build.make CMakeFiles/sys-monitor.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sys-monitor.dir/build.make CMakeFiles/sys-monitor.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/trinh/projects/sys-monitor/build/CMakeFiles --progress-num=1,2,3,4 "Built target sys-monitor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/trinh/projects/sys-monitor/build/CMakeFiles --progress-num=1,2,3,4,5 "Built target sys-monitor"
 .PHONY : CMakeFiles/sys-monitor.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/sys-monitor.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/trinh/projects/sys-monitor/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trinh/projects/sys-monitor/build/CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/sys-monitor.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/trinh/projects/sys-monitor/build/CMakeFiles 0
 .PHONY : CMakeFiles/sys-monitor.dir/rule

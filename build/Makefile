@@ -201,6 +201,30 @@ src/memory.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sys-monitor.dir/build.make CMakeFiles/sys-monitor.dir/src/memory.cpp.s
 .PHONY : src/memory.cpp.s
 
+src/process.o: src/process.cpp.o
+.PHONY : src/process.o
+
+# target to build an object file
+src/process.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sys-monitor.dir/build.make CMakeFiles/sys-monitor.dir/src/process.cpp.o
+.PHONY : src/process.cpp.o
+
+src/process.i: src/process.cpp.i
+.PHONY : src/process.i
+
+# target to preprocess a source file
+src/process.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sys-monitor.dir/build.make CMakeFiles/sys-monitor.dir/src/process.cpp.i
+.PHONY : src/process.cpp.i
+
+src/process.s: src/process.cpp.s
+.PHONY : src/process.s
+
+# target to generate assembly for a file
+src/process.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sys-monitor.dir/build.make CMakeFiles/sys-monitor.dir/src/process.cpp.s
+.PHONY : src/process.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -219,6 +243,9 @@ help:
 	@echo "... src/memory.o"
 	@echo "... src/memory.i"
 	@echo "... src/memory.s"
+	@echo "... src/process.o"
+	@echo "... src/process.i"
+	@echo "... src/process.s"
 .PHONY : help
 
 

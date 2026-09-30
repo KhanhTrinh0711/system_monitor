@@ -7,4 +7,6 @@ add_executable(
 		src/cpu.h
 		src/memory.h
 		src/memory.cpp
+		src/process.cpp
+		src/process.h
 )

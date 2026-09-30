@@ -71,11 +71,11 @@ int memory(MEMINFO &mem_info) {
     };
 
     cout << "==================== MEMORY INFORMATION ===================" << endl;
-    cout << std::left << std::setw(10) << "RAM" << ": " << to_gigabytes(total_kb) << " Gb" << endl;
-    cout << std::left << std::setw(10) << "FreeRAM" << ": " << to_gigabytes(free_kb) << " Gb" << endl;
-    cout << std::left << std::setw(10) << "Cached" << ": " << to_gigabytes(cached_kb) << " Gb" << endl;
-    cout << std::left << std::setw(10) << "Swap" << ": " << to_gigabytes(swap_total_kb) << " Gb" << endl;
-    cout << std::left << std::setw(10) << "FreeSwap" << ": " << to_gigabytes(swap_free_kb) << " Gb" << endl;
+    cout << std::left << std::setw(15) << "RAM" << ": " << to_gigabytes(total_kb) << " GiB" << endl;
+    cout << std::left << std::setw(15) << "RAM Available" << ": " << to_gigabytes(free_kb) << " GiB" << endl;
+    cout << std::left << std::setw(15) << "Cached" << ": " << to_gigabytes(cached_kb) << " GiB" << endl;
+    cout << std::left << std::setw(15) << "Swap" << ": " << to_gigabytes(swap_total_kb) << " GiB" << endl;
+    cout << std::left << std::setw(15) << "Swap Available" << ": " << to_gigabytes(swap_free_kb) << " GiB" << endl;
     cout << "===========================================================" << endl;
 
     return 0;

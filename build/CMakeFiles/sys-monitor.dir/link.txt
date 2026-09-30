@@ -1,1 +1,1 @@
-/usr/bin/c++ "CMakeFiles/sys-monitor.dir/core/main.cpp.o" "CMakeFiles/sys-monitor.dir/src/cpu.cpp.o" "CMakeFiles/sys-monitor.dir/src/memory.cpp.o" -o sys-monitor 
+/usr/bin/c++ "CMakeFiles/sys-monitor.dir/core/main.cpp.o" "CMakeFiles/sys-monitor.dir/src/cpu.cpp.o" "CMakeFiles/sys-monitor.dir/src/memory.cpp.o" "CMakeFiles/sys-monitor.dir/src/process.cpp.o" -o sys-monitor 
